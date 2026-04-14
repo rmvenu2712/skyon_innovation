@@ -150,12 +150,12 @@ export default function AboutUsContent() {
                 </span>
               </div>
 
-              <h2 className="text-[36px] sm:text-3xl md:text-4xl lg:text-7xl font-extrabold font-headline leading-tight tracking-tighter text-on-surface mb-8">
+              <h1 className="text-[36px] sm:text-3xl md:text-4xl lg:text-7xl font-extrabold font-headline leading-tight tracking-tighter text-on-surface mb-8">
                 The Future of <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">
                   Precision Care
                 </span>
-              </h2>
+              </h1>
 
               <p className="text-[16px] md:text-xl text-on-surface-variant max-w-xl leading-relaxed mb-10">
                 SKYON Innovations represents the zenith of cleanroom &amp; OT engineering. We integrate cutting-edge design with precision manufacturing to redefine controlled environments for healthcare and pharma.
