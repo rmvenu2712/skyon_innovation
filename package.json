@@ -1,6 +1,7 @@
 {
   "name": "luminary-medical",
   "private": true,
+  "type": "module",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev --port=3000",

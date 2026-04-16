@@ -3,7 +3,7 @@ import { DynamicProductsData } from "../../../../public/assets/images/productdat
 import ProductDetailView from "@/components/products/ProductsDetailView";
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -11,7 +11,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const product = DynamicProductsData.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const product = DynamicProductsData.find((p) => p.slug === slug);
   if (!product) return {};
   return {
     title: `${product.name} | Skyon Innovation`,
@@ -19,8 +20,9 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default function ProductPage({ params }: Props) {
-  const product = DynamicProductsData.find((p) => p.slug === params.slug);
+export default async function ProductPage({ params }: Props) {
+  const { slug } = await params;
+  const product = DynamicProductsData.find((p) => p.slug === slug);
   if (!product) notFound();
   return <ProductDetailView product={product} />;
 }
