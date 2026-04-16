@@ -94,7 +94,11 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <Link
               href="/contact-us"
-              className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-10 py-4 rounded-full font-bold text-lg hover:shadow-[0px_0px_25px_rgba(74,199,255,0.4)] active:scale-95 transition-all flex items-center justify-center gap-3 group"
+              className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-10 py-4 rounded-full font-bold text-lg hover:shadow-[0px_0px_25px_rgba(74,199,255,0.4)] active:scale-95 transition-all flex items-center justify-center gap-3 group isolate"
+              style={{ 
+                WebkitBackdropFilter: 'blur(0px)', // Helps Safari rendering
+                backgroundClip: 'padding-box'
+              }}
             >
               Contact Us Now <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>

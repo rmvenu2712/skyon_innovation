@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { DynamicProductsData } from '../../public/assets/images/productdata/dynamicproducts';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,7 +42,13 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
+  const productSubLinks = [
+    { name: 'All Products', path: '/products' },
+    ...DynamicProductsData.map(product => ({
+      name: product.name,
+      path: `/products/${product.slug}`
+    }))
+  ];
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -49,15 +56,7 @@ export default function Navbar() {
     {
       name: 'Products',
       path: '/products',
-      subLinks: [
-        { name: 'Clean Room Systems', path: '/products?category=Clean+Room+Systems' },
-        { name: 'Laminar Flow', path: '/products?category=Laminar+Flow' },
-        { name: 'Safety Cabinets', path: '/products?category=Safety+Cabinets' },
-        { name: 'Doors & Glass', path: '/products?category=Doors+%26+Glass' },
-        { name: 'Filters & Ventilation', path: '/products?category=Filters+%26+Ventilation' },
-        { name: 'Validation & Certification', path: '/products?category=Validation+%26+Certification' },
-        { name: 'AMC & Services', path: '/products?category=AMC+%26+Services' },
-      ],
+      subLinks: productSubLinks,
     },
     { name: 'Gallery', path: '/gallery' },
     { name: 'Why Choose', path: '/why-choose' },
@@ -99,8 +98,10 @@ export default function Navbar() {
                 className="object-contain md:group-hover:scale-110 z-10 animate-shadow-blink animate-logo-entrance"
               />
             </div>
-            <span className="text-xl font-black text-white tracking-tighter uppercase font-headline">
-              SKYON
+            <span className="text-xl flex items-start flex-col m-0 p-0 font-black text-white tracking-tighter uppercase font-headline">
+              SKYON <span className="text-[10px]  text-on-surface-variant leading-relaxed">
+                Innovations
+              </span>
             </span>
           </Link>
 
@@ -115,7 +116,7 @@ export default function Navbar() {
                   href={link.path}
                   className={cn(
                     'text-xs font-bold tracking-widest uppercase transition-all duration-300 relative group/link',
-                    pathname === link.path
+                    pathname === link.path || (link.path !== '/' && pathname.startsWith(link.path))
                       ? 'text-primary'
                       : 'text-on-surface-variant hover:text-white'
                   )}
@@ -124,7 +125,7 @@ export default function Navbar() {
                   <span
                     className={cn(
                       'absolute -bottom-1 left-0 h-[2px] bg-primary transition-all duration-300',
-                      pathname === link.path ? 'w-full' : 'w-0 group-hover/link:w-full'
+                      pathname === link.path || (link.path !== '/' && pathname.startsWith(link.path)) ? 'w-full' : 'w-0 group-hover/link:w-full'
                     )}
                   />
                 </Link>
@@ -132,7 +133,7 @@ export default function Navbar() {
                 {/* Desktop Dropdown */}
                 {link.subLinks && (
                   <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 pointer-events-none group-hover/navItem:opacity-100 group-hover/navItem:pointer-events-auto transition-all duration-300 z-50">
-                    <div className="bg-surface-container border border-outline-variant/10 rounded-xl shadow-2xl overflow-hidden py-2 w-56 flex flex-col">
+                    <div className="bg-surface-container border border-outline-variant/10 rounded-xl shadow-2xl py-2 min-w-[280px] flex flex-col">
                       {link.subLinks.map((sub) => (
                         <Link
                           key={sub.name}
@@ -197,7 +198,7 @@ export default function Navbar() {
                       onClick={() => setIsOpen(false)}
                       className={cn(
                         'text-lg font-headline font-bold block transition-all duration-300',
-                        pathname === link.path
+                        pathname === link.path || (link.path !== '/' && pathname.startsWith(link.path))
                           ? 'text-primary'
                           : 'text-on-surface-variant hover:text-white hover:translate-x-2'
                       )}

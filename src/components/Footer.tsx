@@ -133,6 +133,7 @@ export default function Footer() {
           <form onSubmit={handleSubmit} className="space-y-3">
             <div className="flex">
               <input
+                suppressHydrationWarning
                 className="bg-surface-container border border-outline-variant/30 rounded-l-lg p-3 text-white text-sm w-full focus:outline-none focus:border-primary"
                 placeholder="Your email"
                 type="email"
@@ -141,6 +142,7 @@ export default function Footer() {
                 aria-label="Email address"
               />
               <button
+                suppressHydrationWarning
                 type="submit"
                 className="bg-primary text-on-primary px-4 rounded-r-lg hover:bg-primary-container transition-all flex items-center justify-center min-w-[56px]"
                 aria-label="Subscribe"

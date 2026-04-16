@@ -76,7 +76,7 @@ export default function Testimonials() {
               </p>
 
               <div className="flex gap-4 mt-8">
-                <button
+                <button type='button'
                   onClick={scrollPrev}
                   aria-label="Previous testimonial"
                   className="p-3 rounded-full border border-outline-variant/30 text-white hover:bg-surface-variant transition-colors hover:text-primary hover:border-primary"
@@ -84,7 +84,7 @@ export default function Testimonials() {
                   <ChevronLeft className="w-5 h-5" />
                 </button>
 
-                <button
+                <button type='button'
                   onClick={scrollNext}
                   aria-label="Next testimonial"
                   className="p-3 rounded-full border border-outline-variant/30 text-white hover:bg-surface-variant transition-colors hover:text-primary hover:border-primary"
